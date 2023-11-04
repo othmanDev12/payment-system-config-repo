@@ -1,0 +1,65 @@
+server:
+  port: ${PORT:8080}
+  tomcat:
+    max-swallow-size: 25MB
+    max-http-form-post-size: 25MB
+
+application:
+  public-url: ${PUBLIC_URL}
+  api-base-url: ${API_BASE_URL}
+  platform-name: payment-system
+
+spring:
+  profiles:
+    include: ${SPRING_PROFILES:dev}
+  servlet:
+    multipart:
+      max-file-size: 25MB
+      max-request-size: 25MB
+  cloud:
+    stream:
+      default-binder: kafka
+      kafka:
+        binder:
+          auto-create-topics: true
+      bindings:
+        send-mail-out-0:
+          destination: EMAIL.MESSAGE.TOPIC
+          binder: kafka
+    consul:
+      host: ${REGISTRY_HOST:localhost}
+      port: ${REGISTRY_PORT:8500}
+      discovery:
+        enabled: true
+        prefer-ip-address: true
+        health-check-interval: 1s
+        health-check-path: /actuator/health
+        service-name: ${spring.application.name}
+        instance-id: ${spring.application.name}:${vcap.application.instance_id:${spring.application.instance_id:${random.value}}}
+
+resilience4j:
+  timelimiter:
+    configs:
+      default:
+        timeout-duration: 1m
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    shutdown:
+      enabled: true
+    health:
+      show-details: ALWAYS
+  zipkin:
+    tracing:
+      endpoint: ${ZIPKIN_TRACING_ENDPOINT:http://localhost:9411}/api/v2/spans
+  tracing:
+    sampling:
+      probability: 1.0
+
+
+
+
