@@ -18,7 +18,7 @@ spring:
         show-sql: false
         database-platform: org.hibernate.dialect.PostgreSQLDialect
         hibernate:
-          ddl-auto: ${JPA_HIBERNATE_DDL:update}
+          ddl-auto: update
         properties:
           hibernate:
             order_inserts: true
