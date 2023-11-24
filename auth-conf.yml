@@ -1,0 +1,26 @@
+server:
+  port: 0
+
+spring:
+  datasource:
+    url: jdbc:postgresql://127.0.0.1:5432/userdb
+      username: admin
+      password: admin
+      driver-class-name: org.postgresql.Driver
+      hikari:
+        connection-test-query: select 1
+        connection-timeout: 30000
+        maximum-pool-size: 200
+        minimum-idle: 20
+        idle-timeout: 300000
+        leak-detection-threshold: 60000
+      jpa:
+        show-sql: false
+        database-platform: org.hibernate.dialect.PostgreSQLDialect
+        hibernate:
+          ddl-auto: ${JPA_HIBERNATE_DDL:update}
+        properties:
+          hibernate:
+            order_inserts: true
+            jdbc.time_zone: UTC
+            types.print.banner: false
