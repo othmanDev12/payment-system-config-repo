@@ -1,5 +1,4 @@
-server:
-  port: 0
+port: 0
 
 spring:
   datasource:
@@ -24,10 +23,3 @@ spring:
           order_inserts: true
           jdbc.time_zone: UTC
           types.print.banner: false
-
-          ddl-auto: update
-        properties:
-          hibernate:
-            order_inserts: true
-            jdbc.time_zone: UTC
-            types.print.banner: false
