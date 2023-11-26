@@ -1,6 +1,8 @@
 port: 0
 
 spring:
+  profiles:
+    include: default
   datasource:
     url: jdbc:postgresql://127.0.0.1:5432/userdb
     username: admin
