@@ -65,6 +65,10 @@ management:
 message:
   log: hello world
 
+logging:
+  level:
+    org.springframework.cloud.config: DEBUG
+
 
 
 
