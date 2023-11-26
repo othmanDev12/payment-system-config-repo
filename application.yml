@@ -10,7 +10,7 @@ application:
 
 spring:
   profiles:
-    include: dev
+    include: default
   servlet:
     multipart:
       max-file-size: 25MB
