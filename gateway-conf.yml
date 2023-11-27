@@ -1,2 +1,2 @@
-log:
-  server: message
+server:
+  port: 9090
